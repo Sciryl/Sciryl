@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		030E46BA87BA4CB5FDF61C9A /* AppSettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239420A810A50AD2F75E8D1 /* AppSettingsData.swift */; };
+		03404FC5A8D8CC65CA1FEBBA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E4D30ADEB08E5EB345778 /* Theme.swift */; };
+		0F7C4C82BB3664B6D4E1B9F2 /* FileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022E45FEBAE2E6C896C3EB9A /* FileRowView.swift */; };
+		1C36497A8B37AE7FDA2C41E1 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED548CFBAAA5EA377F02DCF /* DateFormatters.swift */; };
+		20644FE4978C16F3AF5876F8 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967B4BAF916B4B0228EA68B8 /* ButtonStyles.swift */; };
+		2DC542A18F3BE3AFF8C30365 /* JSONCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12304C2B855E5DBFDC60BADC /* JSONCoding.swift */; };
+		316A444CB8DC004F354832AF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E24EE48997CFB915DE0C2A /* SettingsView.swift */; };
+		32F0472BA782D43555E72C64 /* RenameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F419E929E4CEF9697DF61 /* RenameSheetView.swift */; };
+		35F84D14A7E88C4085EB5B73 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2084063A86FCDDA30AFEDBD /* FileListView.swift */; };
+		4C884A879E55E5C8579DFC7A /* TagDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF349C4BCA7AB13F46118C3 /* TagDefinition.swift */; };
+		62494913B1E078DC359C02C3 /* TagPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6049168737AE5DCEFE16F8 /* TagPickerView.swift */; };
+		69734E6481DBD532865CF796 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11674BFEB495BD5004C76828 /* ContentView.swift */; };
+		6DCD4B1BBF86EC7B8DF5B7DE /* ChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420045B2A3F2AAE20899EA34 /* ChangeAction.swift */; };
+		74844CEEAC40B937F5BD465F /* ToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB2444DB6697799A943CDF2 /* ToolbarContent.swift */; };
+		7C5F4809934A7274DFEE34A1 /* WardenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98294C75AEB321A3FA18C96E /* WardenApp.swift */; };
+		7FA24E08878F2011A3B1DCCB /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE4F74AD2E2B5984294DDD /* EmptyStateView.swift */; };
+		81A947D583C901D57C771699 /* NewFolderSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA874427964DA6DD282D6C88 /* NewFolderSheetView.swift */; };
+		823B45C38F3C848B1387A9EF /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB4FDC90453EE334212A62 /* TagService.swift */; };
+		86644ADB97A4CD8D84911FB3 /* RenamePlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58064F739F062A9D393E63CA /* RenamePlanner.swift */; };
+		8E944A92B5F69D2899A36AED /* AppPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1425EB0E58C10085D1B33 /* AppPaths.swift */; };
+		93374B7E8243D045F0B65C97 /* FinderCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3C4666A185693BF61C18A9 /* FinderCommentService.swift */; };
+		9A954C2D9C79C1FA3A07051A /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E4683A10EE471E1CF2448 /* SidebarView.swift */; };
+		9B4F4C8B85B1AF5F6D084541 /* CommentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC34282BB71DD97202CD2D1 /* CommentEditorView.swift */; };
+		9BEA472ABD8FA12C30723934 /* FileSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6470FACDD4F0B5E09A04A /* FileSystemService.swift */; };
+		9C0F485F818778E6361189C2 /* ChangeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B43599B0ABF41420B0279 /* ChangeRecord.swift */; };
+		A45C47ADA0FF7BEDFBEC9B95 /* ChangeHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66934C7DAFB0B773D182809E /* ChangeHistoryView.swift */; };
+		A85D44E2AC0938E84075FAB9 /* FileBrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA543F3B98FD4191B79FD1D /* FileBrowserViewModel.swift */; };
+		B17C4BFE99FE8965517A1AAC /* FavoriteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E42639A653BC34D037709 /* FavoriteLocation.swift */; };
+		C10548F58F07703D05B3E190 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80274533BE39CF645F743FFA /* FileItem.swift */; };
+		C4F4426F811B30C2A8D3C2DF /* IconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8147A7AFBA44D042512954 /* IconProvider.swift */; };
+		DAE3454CAA614998283F4C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD74E1DAA6E1D8BAA098DDF /* Assets.xcassets */; };
+		DE8D442BBE43051462B3D9B4 /* ChangeTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2634DE683CADA1A51E91E62 /* ChangeTrackingService.swift */; };
+		E9FD450FB173F5259CF0D0DD /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4154795AC0C8A569A8CCCA9 /* SettingsStore.swift */; };
+		FC044136BD9C5A985D690583 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C4CF9907046033DB494D1 /* Color+Hex.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		022E45FEBAE2E6C896C3EB9A /* FileRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileRowView.swift; path = Warden/Views/FileRowView.swift; sourceTree = "<group>"; };
+		0CD6470FACDD4F0B5E09A04A /* FileSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileSystemService.swift; path = Warden/Services/FileSystemService.swift; sourceTree = "<group>"; };
+		0ED548CFBAAA5EA377F02DCF /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatters.swift; path = Warden/Utilities/DateFormatters.swift; sourceTree = "<group>"; };
+		11674BFEB495BD5004C76828 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Warden/Views/ContentView.swift; sourceTree = "<group>"; };
+		12304C2B855E5DBFDC60BADC /* JSONCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSONCoding.swift; path = Warden/Utilities/JSONCoding.swift; sourceTree = "<group>"; };
+		1B8147A7AFBA44D042512954 /* IconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IconProvider.swift; path = Warden/Utilities/IconProvider.swift; sourceTree = "<group>"; };
+		3AD74E1DAA6E1D8BAA098DDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Warden/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		420045B2A3F2AAE20899EA34 /* ChangeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeAction.swift; path = Warden/Models/ChangeAction.swift; sourceTree = "<group>"; };
+		4F3C4666A185693BF61C18A9 /* FinderCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FinderCommentService.swift; path = Warden/Services/FinderCommentService.swift; sourceTree = "<group>"; };
+		4FC34282BB71DD97202CD2D1 /* CommentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommentEditorView.swift; path = Warden/Views/CommentEditorView.swift; sourceTree = "<group>"; };
+		5264428093F79B74102F6775 /* Warden.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Warden.entitlements; path = Warden/Warden.entitlements; sourceTree = "<group>"; };
+		58064F739F062A9D393E63CA /* RenamePlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RenamePlanner.swift; path = Warden/Utilities/RenamePlanner.swift; sourceTree = "<group>"; };
+		5D9E4D30ADEB08E5EB345778 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Warden/Utilities/Theme.swift; sourceTree = "<group>"; };
+		5FB2444DB6697799A943CDF2 /* ToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToolbarContent.swift; path = Warden/Views/ToolbarContent.swift; sourceTree = "<group>"; };
+		66934C7DAFB0B773D182809E /* ChangeHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeHistoryView.swift; path = Warden/Views/ChangeHistoryView.swift; sourceTree = "<group>"; };
+		7B6049168737AE5DCEFE16F8 /* TagPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagPickerView.swift; path = Warden/Views/TagPickerView.swift; sourceTree = "<group>"; };
+		80274533BE39CF645F743FFA /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileItem.swift; path = Warden/Models/FileItem.swift; sourceTree = "<group>"; };
+		885F419E929E4CEF9697DF61 /* RenameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RenameSheetView.swift; path = Warden/Views/RenameSheetView.swift; sourceTree = "<group>"; };
+		935B43599B0ABF41420B0279 /* ChangeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeRecord.swift; path = Warden/Models/ChangeRecord.swift; sourceTree = "<group>"; };
+		967B4BAF916B4B0228EA68B8 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonStyles.swift; path = Warden/Utilities/ButtonStyles.swift; sourceTree = "<group>"; };
+		98294C75AEB321A3FA18C96E /* WardenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WardenApp.swift; path = Warden/App/WardenApp.swift; sourceTree = "<group>"; };
+		9A3C4CF9907046033DB494D1 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color+Hex.swift"; path = "Warden/Utilities/Color+Hex.swift"; sourceTree = "<group>"; };
+		9BA543F3B98FD4191B79FD1D /* FileBrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileBrowserViewModel.swift; path = Warden/ViewModels/FileBrowserViewModel.swift; sourceTree = "<group>"; };
+		9BBB4FDC90453EE334212A62 /* TagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagService.swift; path = Warden/Services/TagService.swift; sourceTree = "<group>"; };
+		AA874427964DA6DD282D6C88 /* NewFolderSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewFolderSheetView.swift; path = Warden/Views/NewFolderSheetView.swift; sourceTree = "<group>"; };
+		AAAB4F5293F740C98ACBEA28 /* Warden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warden.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCFE4F74AD2E2B5984294DDD /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyStateView.swift; path = Warden/Views/EmptyStateView.swift; sourceTree = "<group>"; };
+		BF3E4683A10EE471E1CF2448 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SidebarView.swift; path = Warden/Views/SidebarView.swift; sourceTree = "<group>"; };
+		C2084063A86FCDDA30AFEDBD /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileListView.swift; path = Warden/Views/FileListView.swift; sourceTree = "<group>"; };
+		CFF349C4BCA7AB13F46118C3 /* TagDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagDefinition.swift; path = Warden/Models/TagDefinition.swift; sourceTree = "<group>"; };
+		D239420A810A50AD2F75E8D1 /* AppSettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppSettingsData.swift; path = Warden/Models/AppSettingsData.swift; sourceTree = "<group>"; };
+		D2634DE683CADA1A51E91E62 /* ChangeTrackingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeTrackingService.swift; path = Warden/Services/ChangeTrackingService.swift; sourceTree = "<group>"; };
+		D28E42639A653BC34D037709 /* FavoriteLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteLocation.swift; path = Warden/Models/FavoriteLocation.swift; sourceTree = "<group>"; };
+		D2E24EE48997CFB915DE0C2A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Warden/Views/SettingsView.swift; sourceTree = "<group>"; };
+		E4F1425EB0E58C10085D1B33 /* AppPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppPaths.swift; path = Warden/Utilities/AppPaths.swift; sourceTree = "<group>"; };
+		F4154795AC0C8A569A8CCCA9 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsStore.swift; path = Warden/Services/SettingsStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D9834BB2A07AA9B3B1225027 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		29C04280A7F2202CE5C5F6B1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9BA543F3B98FD4191B79FD1D /* FileBrowserViewModel.swift */,
+			);
+			name = ViewModels;
+			path = Warden/ViewModels;
+			sourceTree = "<group>";
+		};
+		38834B59A7A76C63E49D1478 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5FB2444DB6697799A943CDF2 /* ToolbarContent.swift */,
+				BF3E4683A10EE471E1CF2448 /* SidebarView.swift */,
+				885F419E929E4CEF9697DF61 /* RenameSheetView.swift */,
+				D2E24EE48997CFB915DE0C2A /* SettingsView.swift */,
+				7B6049168737AE5DCEFE16F8 /* TagPickerView.swift */,
+				AA874427964DA6DD282D6C88 /* NewFolderSheetView.swift */,
+				022E45FEBAE2E6C896C3EB9A /* FileRowView.swift */,
+				BCFE4F74AD2E2B5984294DDD /* EmptyStateView.swift */,
+				66934C7DAFB0B773D182809E /* ChangeHistoryView.swift */,
+				4FC34282BB71DD97202CD2D1 /* CommentEditorView.swift */,
+				C2084063A86FCDDA30AFEDBD /* FileListView.swift */,
+				11674BFEB495BD5004C76828 /* ContentView.swift */,
+			);
+			name = Views;
+			path = Warden/Views;
+			sourceTree = "<group>";
+		};
+		3B604BADA8BE04284A56E7A7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0CD6470FACDD4F0B5E09A04A /* FileSystemService.swift */,
+				4F3C4666A185693BF61C18A9 /* FinderCommentService.swift */,
+				F4154795AC0C8A569A8CCCA9 /* SettingsStore.swift */,
+				9BBB4FDC90453EE334212A62 /* TagService.swift */,
+				D2634DE683CADA1A51E91E62 /* ChangeTrackingService.swift */,
+			);
+			name = Services;
+			path = Warden/Services;
+			sourceTree = "<group>";
+		};
+		636A4154B26735F6395F4A51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CFF349C4BCA7AB13F46118C3 /* TagDefinition.swift */,
+				D28E42639A653BC34D037709 /* FavoriteLocation.swift */,
+				420045B2A3F2AAE20899EA34 /* ChangeAction.swift */,
+				935B43599B0ABF41420B0279 /* ChangeRecord.swift */,
+				D239420A810A50AD2F75E8D1 /* AppSettingsData.swift */,
+				80274533BE39CF645F743FFA /* FileItem.swift */,
+			);
+			name = Models;
+			path = Warden/Models;
+			sourceTree = "<group>";
+		};
+		B37D4795B600A9496A4AD799 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3AD74E1DAA6E1D8BAA098DDF /* Assets.xcassets */,
+			);
+			name = Resources;
+			path = Warden/Resources;
+			sourceTree = "<group>";
+		};
+		D16840FBAABCBCF1C0C527B5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				98294C75AEB321A3FA18C96E /* WardenApp.swift */,
+			);
+			name = App;
+			path = Warden/App;
+			sourceTree = "<group>";
+		};
+		E1454AF6A44D77406E714DE2 /* Warden */ = {
+			isa = PBXGroup;
+			children = (
+				636A4154B26735F6395F4A51 /* Models */,
+				29C04280A7F2202CE5C5F6B1 /* ViewModels */,
+				38834B59A7A76C63E49D1478 /* Views */,
+				3B604BADA8BE04284A56E7A7 /* Services */,
+				F69C4E58825E2629F2FCB9F7 /* Utilities */,
+				D16840FBAABCBCF1C0C527B5 /* App */,
+				B37D4795B600A9496A4AD799 /* Resources */,
+				5264428093F79B74102F6775 /* Warden.entitlements */,
+			);
+			name = Warden;
+			path = Warden;
+			sourceTree = "<group>";
+		};
+		E7374CA69C83A72C75156D3E = {
+			isa = PBXGroup;
+			children = (
+				F05B404B96AF4341F3BCB5FC /* Products */,
+				E1454AF6A44D77406E714DE2 /* Warden */,
+			);
+			sourceTree = "<group>";
+		};
+		F05B404B96AF4341F3BCB5FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAAB4F5293F740C98ACBEA28 /* Warden.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F69C4E58825E2629F2FCB9F7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				58064F739F062A9D393E63CA /* RenamePlanner.swift */,
+				0ED548CFBAAA5EA377F02DCF /* DateFormatters.swift */,
+				1B8147A7AFBA44D042512954 /* IconProvider.swift */,
+				12304C2B855E5DBFDC60BADC /* JSONCoding.swift */,
+				967B4BAF916B4B0228EA68B8 /* ButtonStyles.swift */,
+				5D9E4D30ADEB08E5EB345778 /* Theme.swift */,
+				9A3C4CF9907046033DB494D1 /* Color+Hex.swift */,
+				E4F1425EB0E58C10085D1B33 /* AppPaths.swift */,
+			);
+			name = Utilities;
+			path = Warden/Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1DE4E20B1DB2A4A5C1F4BBF /* Warden */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F0E4A26B949153629A83045 /* Build configuration list for PBXNativeTarget "Warden" */;
+			buildPhases = (
+				BB5D4BD8BAEFF7D729D9DAE6 /* Sources */,
+				D9834BB2A07AA9B3B1225027 /* Frameworks */,
+				1DF9477C9AAF33DE5C88055F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Warden;
+			productName = Warden;
+			productReference = AAAB4F5293F740C98ACBEA28 /* Warden.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F6942629DD09A65E35186CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					B1DE4E20B1DB2A4A5C1F4BBF = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = E122416F9D387CC808B01E6A /* Build configuration list for PBXProject "Warden" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E7374CA69C83A72C75156D3E;
+			productRefGroup = F05B404B96AF4341F3BCB5FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1DE4E20B1DB2A4A5C1F4BBF /* Warden */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1DF9477C9AAF33DE5C88055F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAE3454CAA614998283F4C0B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB5D4BD8BAEFF7D729D9DAE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C884A879E55E5C8579DFC7A /* TagDefinition.swift in Sources */,
+				B17C4BFE99FE8965517A1AAC /* FavoriteLocation.swift in Sources */,
+				6DCD4B1BBF86EC7B8DF5B7DE /* ChangeAction.swift in Sources */,
+				9C0F485F818778E6361189C2 /* ChangeRecord.swift in Sources */,
+				030E46BA87BA4CB5FDF61C9A /* AppSettingsData.swift in Sources */,
+				C10548F58F07703D05B3E190 /* FileItem.swift in Sources */,
+				A85D44E2AC0938E84075FAB9 /* FileBrowserViewModel.swift in Sources */,
+				74844CEEAC40B937F5BD465F /* ToolbarContent.swift in Sources */,
+				9A954C2D9C79C1FA3A07051A /* SidebarView.swift in Sources */,
+				32F0472BA782D43555E72C64 /* RenameSheetView.swift in Sources */,
+				316A444CB8DC004F354832AF /* SettingsView.swift in Sources */,
+				62494913B1E078DC359C02C3 /* TagPickerView.swift in Sources */,
+				81A947D583C901D57C771699 /* NewFolderSheetView.swift in Sources */,
+				0F7C4C82BB3664B6D4E1B9F2 /* FileRowView.swift in Sources */,
+				7FA24E08878F2011A3B1DCCB /* EmptyStateView.swift in Sources */,
+				A45C47ADA0FF7BEDFBEC9B95 /* ChangeHistoryView.swift in Sources */,
+				9B4F4C8B85B1AF5F6D084541 /* CommentEditorView.swift in Sources */,
+				35F84D14A7E88C4085EB5B73 /* FileListView.swift in Sources */,
+				69734E6481DBD532865CF796 /* ContentView.swift in Sources */,
+				9BEA472ABD8FA12C30723934 /* FileSystemService.swift in Sources */,
+				93374B7E8243D045F0B65C97 /* FinderCommentService.swift in Sources */,
+				E9FD450FB173F5259CF0D0DD /* SettingsStore.swift in Sources */,
+				823B45C38F3C848B1387A9EF /* TagService.swift in Sources */,
+				DE8D442BBE43051462B3D9B4 /* ChangeTrackingService.swift in Sources */,
+				86644ADB97A4CD8D84911FB3 /* RenamePlanner.swift in Sources */,
+				1C36497A8B37AE7FDA2C41E1 /* DateFormatters.swift in Sources */,
+				C4F4426F811B30C2A8D3C2DF /* IconProvider.swift in Sources */,
+				2DC542A18F3BE3AFF8C30365 /* JSONCoding.swift in Sources */,
+				20644FE4978C16F3AF5876F8 /* ButtonStyles.swift in Sources */,
+				03404FC5A8D8CC65CA1FEBBA /* Theme.swift in Sources */,
+				FC044136BD9C5A985D690583 /* Color+Hex.swift in Sources */,
+				8E944A92B5F69D2899A36AED /* AppPaths.swift in Sources */,
+				7C5F4809934A7274DFEE34A1 /* WardenApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4FEE4469BACED5C26D1DBD63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		8C6B422EAE72B564F0B03BBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Warden/Warden.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/Warden/Resources",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Warden;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Warden uses Apple Events to read and write Finder comments on your files and folders.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/Warden/Models",
+					"$(SRCROOT)/Warden/ViewModels",
+					"$(SRCROOT)/Warden/Views",
+					"$(SRCROOT)/Warden/Services",
+					"$(SRCROOT)/Warden/Utilities",
+					"$(SRCROOT)/Warden/App",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.warden.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BB5A42D79B3CB51B4D34E161 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Warden/Warden.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/Warden/Resources",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Warden;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Warden uses Apple Events to read and write Finder comments on your files and folders.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/Warden/Models",
+					"$(SRCROOT)/Warden/ViewModels",
+					"$(SRCROOT)/Warden/Views",
+					"$(SRCROOT)/Warden/Services",
+					"$(SRCROOT)/Warden/Utilities",
+					"$(SRCROOT)/Warden/App",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.warden.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D4454F48A02C104CFE61305B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F0E4A26B949153629A83045 /* Build configuration list for PBXNativeTarget "Warden" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5A42D79B3CB51B4D34E161 /* Debug */,
+				8C6B422EAE72B564F0B03BBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E122416F9D387CC808B01E6A /* Build configuration list for PBXProject "Warden" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4454F48A02C104CFE61305B /* Debug */,
+				4FEE4469BACED5C26D1DBD63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F6942629DD09A65E35186CA /* Project object */;
+}
