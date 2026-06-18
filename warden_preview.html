@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warden — UI Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0E0F0E;
+    --bg2:       #16181A;
+    --bg3:       #1E2123;
+    --mainText:  #F2EFE8;
+    --dimText:   #A8A8A0;
+    --faintText: #5A5C58;
+    --rule:      #2A2D2E;
+    --green:     #A8D257;
+    --deepGreen: #7FA63F;
+    --orange:    #E87722;
+    --red:       #E14A3C;
+    --silver:    #C9CCC9;
+  }
+
+  body {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Barlow Condensed', 'Helvetica Neue', Arial, sans-serif;
+    padding: 20px;
+  }
+
+  /* ── Window chrome ── */
+  .window {
+    width: 1100px;
+    height: 700px;
+    background: var(--bg);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.06);
+    position: relative;
+  }
+
+  /* ── Title bar / toolbar ── */
+  .titlebar {
+    height: 52px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .traffic-lights { display: flex; gap: 7px; margin-right: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.close  { background: #FF5F57; }
+  .dot.min    { background: #FEBC2E; }
+  .dot.max    { background: #28C840; }
+
+  .nav-btn {
+    background: var(--bg3);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--dimText);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .nav-btn.disabled { opacity: .3; cursor: default; }
+  .nav-btn:hover:not(.disabled) { background: #262a2d; color: var(--mainText); }
+
+  .window-title {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dimText);
+    letter-spacing: .03em;
+  }
+
+  .toolbar-right { display: flex; gap: 6px; align-items: center; }
+
+  .tb-btn {
+    background: none;
+    border: none;
+    color: var(--dimText);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 7px;
+    border-radius: 4px;
+    transition: background .15s, color .15s;
+  }
+  .tb-btn:hover { background: var(--bg3); color: var(--mainText); }
+
+  /* search bar */
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--bg3);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 4px 9px;
+    gap: 6px;
+    width: 200px;
+  }
+  .search-wrap input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--mainText);
+    font-size: 13px;
+    width: 100%;
+  }
+  .search-wrap input::placeholder { color: var(--faintText); }
+  .search-icon { color: var(--faintText); font-size: 13px; }
+
+  /* ── Body: sidebar + main ── */
+  .body-row {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 200px;
+    background: var(--bg2);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+
+  .sidebar-section { padding: 14px 0 4px; }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--faintText);
+    padding: 0 14px 6px;
+  }
+
+  .sidebar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 1px 6px;
+    font-size: 13.5px;
+    color: var(--dimText);
+    transition: background .12s, color .12s;
+  }
+  .sidebar-row:hover { background: var(--bg3); color: var(--mainText); }
+  .sidebar-row.active {
+    background: rgba(168,210,87,.13);
+    color: var(--green);
+  }
+  .sidebar-row .icon { font-size: 14px; width: 16px; text-align: center; }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule);
+  }
+  .add-folder-btn {
+    background: none;
+    border: none;
+    color: var(--dimText);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0;
+  }
+  .add-folder-btn:hover { color: var(--mainText); }
+
+  /* ── Main file list ── */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  /* column headers */
+  .table-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 150px 90px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg2);
+    flex-shrink: 0;
+  }
+  .col-head {
+    padding: 8px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--faintText);
+    cursor: pointer;
+    user-select: none;
+  }
+  .col-head:hover { color: var(--dimText); }
+  .col-head.sorted { color: var(--green); }
+  .col-head.sorted::after { content: ' ↑'; font-size: 10px; }
+
+  /* rows */
+  .file-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+  .file-list::-webkit-scrollbar { width: 6px; }
+  .file-list::-webkit-scrollbar-track { background: transparent; }
+  .file-list::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  .file-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 150px 90px;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(42,45,46,.5);
+    align-items: center;
+    cursor: default;
+    transition: background .08s;
+  }
+  .file-row:hover { background: var(--bg3); }
+  .file-row.selected { background: rgba(168,210,87,.10); }
+  .file-row.selected .file-name { color: var(--green); }
+
+  .file-cell {
+    padding: 7px 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+  .file-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+  .file-name {
+    font-size: 13.5px;
+    color: var(--mainText);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cell-dim {
+    font-size: 12.5px;
+    color: var(--dimText);
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    padding: 7px 6px;
+    white-space: nowrap;
+  }
+
+  /* tag dots */
+  .tags-cell { padding: 7px 6px; display: flex; align-items: center; gap: 4px; }
+  .tag-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── Status bar ── */
+  .statusbar {
+    height: 26px;
+    background: var(--bg2);
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .status-text {
+    font-size: 11px;
+    color: var(--faintText);
+  }
+  .status-text b { color: var(--dimText); font-weight: 600; }
+
+  /* ── Floating context menu ── */
+  .ctx-menu {
+    position: absolute;
+    top: 230px;
+    left: 440px;
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 4px;
+    min-width: 190px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.6);
+    z-index: 10;
+    display: none;
+  }
+  .ctx-menu.visible { display: block; }
+  .ctx-item {
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--mainText);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .ctx-item:hover { background: rgba(168,210,87,.14); color: var(--green); }
+  .ctx-item.danger:hover { background: rgba(225,74,60,.14); color: var(--red); }
+  .ctx-divider { height: 1px; background: var(--rule); margin: 3px 6px; }
+  .ctx-arrow::after { content: ' ›'; float: right; color: var(--dimText); }
+
+  /* ── Toggle switch for demo ── */
+  .demo-controls {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    display: flex;
+    gap: 8px;
+  }
+  .demo-btn {
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--dimText);
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .demo-btn:hover, .demo-btn.active { background: rgba(168,210,87,.15); color: var(--green); border-color: var(--green); }
+
+  /* ── Sheet overlay ── */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 10px;
+  }
+  .overlay.visible { display: flex; }
+
+  .sheet {
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 24px;
+    width: 460px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.7);
+  }
+  .sheet-title { font-size: 18px; font-weight: 700; color: var(--mainText); margin-bottom: 18px; }
+  .sheet-label { font-size: 12px; color: var(--dimText); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+  .sheet-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--mainText);
+    font-size: 14px;
+    padding: 8px 10px;
+    outline: none;
+    margin-bottom: 14px;
+  }
+  .sheet-input:focus { border-color: var(--green); }
+  .mode-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+  .mode-tab {
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    background: var(--bg3);
+    color: var(--dimText);
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .mode-tab.active { background: rgba(168,210,87,.18); border-color: var(--green); color: var(--green); }
+  .preview-box {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--dimText);
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  .preview-row { display: flex; gap: 8px; padding: 2px 0; }
+  .preview-old { color: var(--faintText); text-decoration: line-through; }
+  .preview-arr { color: var(--faintText); }
+  .preview-new { color: var(--green); }
+  .sheet-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+  .btn-primary {
+    background: var(--green);
+    color: #0E0F0E;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--deepGreen); }
+  .btn-secondary {
+    background: var(--bg3);
+    color: var(--dimText);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 7px 16px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { color: var(--mainText); }
+
+  /* Settings sheet */
+  .settings-tabs { display: flex; border-bottom: 1px solid var(--rule); margin-bottom: 18px; }
+  .s-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--dimText);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .s-tab.active { color: var(--green); border-bottom-color: var(--green); }
+  .tag-row-s { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--rule); }
+  .tag-swatch { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .tag-name-s { font-size: 13px; color: var(--mainText); flex: 1; }
+  .tag-del { background: none; border: none; color: var(--faintText); cursor: pointer; font-size: 14px; }
+  .tag-del:hover { color: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="window" id="win">
+
+  <!-- ── Toolbar ── -->
+  <div class="titlebar">
+    <div class="traffic-lights">
+      <div class="dot close"></div>
+      <div class="dot min"></div>
+      <div class="dot max"></div>
+    </div>
+
+    <!-- nav -->
+    <button class="nav-btn disabled" title="Back">&#�;</button>
+    <button class="nav-btn disabled" title="Forward">&#10;</button>
+    <button class="nav-btn" title="Up" onclick="goUp()">↑</button>
+
+    <div class="window-title" id="win-title">Documents</div>
+
+    <div class="toolbar-right">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search this folder" id="search-input" oninput="filterFiles()">
+      </div>
+      <button class="tb-btn" title="New Folder" onclick="showSheet('new-folder-sheet')">📁+</button>
+      <button class="tb-btn" title="Filter &amp; Sort">⚙︎ ▾</button>
+      <button class="tb-btn" title="Change History" onclick="showSheet('history-sheet')">🕐</button>
+      <button class="tb-btn" title="Settings" onclick="showSheet('settings-sheet')">⚙︎</button>
+    </div>
+  </div>
+
+  <!-- ── Body ── -->
+  <div class="body-row">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Favorites</div>
+        <div class="sidebar-row" onclick="navigate('Projects')"><span class="icon">📁</span>Projects</div>
+        <div class="sidebar-row" onclick="navigate('Design')"><span class="icon">📁</span>Design</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Locations</div>
+        <div class="sidebar-row" onclick="navigate('Home')"><span class="icon">🏠</span>Home</div>
+        <div class="sidebar-row" onclick="navigate('Desktop')"><span class="icon">🖥</span>Desktop</div>
+        <div class="sidebar-row active" onclick="navigate('Documents')"><span class="icon">📄</span>Documents</div>
+        <div class="sidebar-row" onclick="navigate('Dropbox')"><span class="icon">📦</span>Dropbox</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Volumes</div>
+        <div class="sidebar-row" onclick="navigate('Backup SSD')"><span class="icon">💾</span>Backup SSD</div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="add-folder-btn">＋ Add Current Folder</button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <div class="table-header">
+        <div class="col-head sorted">Name</div>
+        <div class="col-head">Tags</div>
+        <div class="col-head">Date Modified</div>
+        <div class="col-head">Size</div>
+      </div>
+
+      <div class="file-list" id="file-list" oncontextmenu="showCtx(event)">
+        <!-- rows injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Status bar -->
+  <div class="statusbar">
+    <span class="status-text" id="status-left"><b>24 items</b></span>
+    <span class="status-text" id="status-sel"></span>
+    <span class="status-text" style="margin-left:auto">Documents</span>
+  </div>
+
+  <!-- ── Context menu ── -->
+  <div class="ctx-menu" id="ctx-menu">
+    <div class="ctx-item" onclick="hideCtx()">Open</div>
+    <div class="ctx-item" onclick="hideCtx(); showSheet('rename-sheet')">Rename…</div>
+    <div class="ctx-item" onclick="hideCtx()">Add Prefix…</div>
+    <div class="ctx-item" onclick="hideCtx()">Add Suffix…</div>
+    <div class="ctx-item ctx-arrow" onclick="hideCtx()">Tags</div>
+    <div class="ctx-item" onclick="hideCtx()">Edit Comment…</div>
+    <div class="ctx-item ctx-arrow" onclick="hideCtx()">Move to…</div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item danger" onclick="hideCtx()">Move to To Purge</div>
+  </div>
+
+  <!-- ── SHEETS ── -->
+
+  <!-- Rename Sheet -->
+  <div class="overlay" id="rename-sheet">
+    <div class="sheet">
+      <div class="sheet-title">Rename</div>
+      <div class="mode-tabs">
+        <div class="mode-tab active" onclick="setMode(this,'full')">Full Name</div>
+        <div class="mode-tab" onclick="setMode(this,'prefix')">Prefix</div>
+        <div class="mode-tab" onclick="setMode(this,'postfix')">Postfix</div>
+        <div class="mode-tab" onclick="setMode(this,'seq')">Sequential</div>
+      </div>
+      <div class="sheet-label">New Name</div>
+      <input class="sheet-input" id="rename-input" type="text" value="Budget 2026" oninput="updatePreview()">
+      <div class="sheet-label">Preview</div>
+      <div class="preview-box" id="rename-preview">
+        <div class="preview-row">
+          <span class="preview-old">Budget 2025.xlsx</span>
+          <span class="preview-arr">→</span>
+          <span class="preview-new">Budget 2026.xlsx</span>
+        </div>
+        <div class="preview-row">
+          <span class="preview-old">Q1 Report.pdf</span>
+          <span class="preview-arr">→</span>
+          <span class="preview-new">Budget 2026.pdf</span>
+        </div>
+      </div>
+      <div class="sheet-actions">
+        <button class="btn-secondary" onclick="hideSheet('rename-sheet')">Cancel</button>
+        <button class="btn-primary" onclick="hideSheet('rename-sheet')">Rename</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Folder Sheet -->
+  <div class="overlay" id="new-folder-sheet">
+    <div class="sheet" style="width:320px">
+      <div class="sheet-title">New Folder</div>
+      <div class="sheet-label">Folder Name</div>
+      <input class="sheet-input" type="text" value="untitled folder">
+      <div class="sheet-actions">
+        <button class="btn-secondary" onclick="hideSheet('new-folder-sheet')">Cancel</button>
+        <button class="btn-primary" onclick="hideSheet('new-folder-sheet')">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change History Sheet -->
+  <div class="overlay" id="history-sheet">
+    <div class="sheet" style="width:560px">
+      <div class="sheet-title">Change History</div>
+      <div style="background:var(--bg);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:16px;">
+        <div style="display:grid;grid-template-columns:1fr 80px 1fr 130px;background:var(--bg2);border-bottom:1px solid var(--rule);">
+          <div class="col-head" style="padding:7px 10px;">Item</div>
+          <div class="col-head" style="padding:7px 6px;">Action</div>
+          <div class="col-head" style="padding:7px 6px;">New Value</div>
+          <div class="col-head" style="padding:7px 6px;">When</div>
+        </div>
+        <div style="font-size:12.5px;font-family:'JetBrains Mono',monospace;">
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr 130px;padding:7px 10px;border-bottom:1px solid rgba(42,45,46,.5);color:var(--dimText);">
+            <span style="color:var(--mainText)">Budget 2025.xlsx</span><span>Rename</span><span style="color:var(--green)">Budget 2026.xlsx</span><span>Today 14:22</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr 130px;padding:7px 10px;border-bottom:1px solid rgba(42,45,46,.5);color:var(--dimText);">
+            <span style="color:var(--mainText)">old_design.fig</span><span>Delete</span><span>—</span><span>Today 11:05</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr 130px;padding:7px 10px;border-bottom:1px solid rgba(42,45,46,.5);color:var(--dimText);">
+            <span style="color:var(--mainText)">Notes.md</span><span>Tag+</span><span style="color:#A8D257">⬤ Work</span><span>Yesterday 18:44</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr 130px;padding:7px 10px;color:var(--dimText);">
+            <span style="color:var(--mainText)">Archive</span><span>Move</span><span style="color:var(--dimText)">~/Desktop</span><span>Yesterday 09:12</span>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-actions">
+        <button class="btn-secondary" onclick="hideSheet('history-sheet')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Sheet -->
+  <div class="overlay" id="settings-sheet">
+    <div class="sheet" style="width:480px">
+      <div class="sheet-title">Settings</div>
+      <div class="settings-tabs">
+        <div class="s-tab" onclick="setSettingsTab(this,0)">General</div>
+        <div class="s-tab active" onclick="setSettingsTab(this,1)">Tags</div>
+        <div class="s-tab" onclick="setSettingsTab(this,2)">Favorites</div>
+      </div>
+
+      <!-- Tags panel -->
+      <div id="settings-panel-1">
+        <div class="tag-row-s">
+          <div class="tag-swatch" style="background:#A8D257"></div>
+          <span class="tag-name-s">Work</span>
+          <button class="tag-del">✕</button>
+        </div>
+        <div class="tag-row-s">
+          <div class="tag-swatch" style="background:#E87722"></div>
+          <span class="tag-name-s">Review</span>
+          <button class="tag-del">✕</button>
+        </div>
+        <div class="tag-row-s">
+          <div class="tag-swatch" style="background:#7B5EA7"></div>
+          <span class="tag-name-s">Personal</span>
+          <button class="tag-del">✕</button>
+        </div>
+        <div class="tag-row-s">
+          <div class="tag-swatch" style="background:#E14A3C"></div>
+          <span class="tag-name-s">Urgent</span>
+          <button class="tag-del">✕</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:14px;">
+          <input class="sheet-input" style="margin:0;flex:1" type="text" placeholder="New tag name…">
+          <button class="btn-primary" style="white-space:nowrap">+ Add Tag</button>
+        </div>
+      </div>
+
+      <div class="sheet-actions" style="margin-top:18px;">
+        <button class="btn-secondary" onclick="hideSheet('settings-sheet')">Done</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- .window -->
+
+<!-- Demo controls outside window -->
+<div class="demo-controls">
+  <button class="demo-btn" onclick="showSheet('rename-sheet')">Rename Sheet</button>
+  <button class="demo-btn" onclick="showSheet('history-sheet')">History Sheet</button>
+  <button class="demo-btn" onclick="showSheet('settings-sheet')">Settings Sheet</button>
+  <button class="demo-btn" onclick="showSheet('new-folder-sheet')">New Folder</button>
+</div>
+
+<script>
+const FILES = [
+  { name:'Budget 2026.xlsx', icon:'📊', dir:false, tags:['Work','Urgent'], mod:'Jun 18, 2026', size:'48 KB' },
+  { name:'Archive',          icon:'📁', dir:true,  tags:[],               mod:'Jun 15, 2026', size:'—' },
+  { name:'Client Proposals', icon:'📁', dir:true,  tags:['Work'],         mod:'Jun 14, 2026', size:'—' },
+  { name:'Notes.md',         icon:'📝', dir:false, tags:['Personal'],     mod:'Jun 12, 2026', size:'4 KB' },
+  { name:'Q1 Report.pdf',    icon:'📄', dir:false, tags:['Work','Review'],mod:'Jun 10, 2026', size:'2.1 MB' },
+  { name:'Logo Final.png',   icon:'🖼',  dir:false, tags:[],               mod:'Jun 08, 2026', size:'320 KB' },
+  { name:'Contracts',        icon:'📁', dir:true,  tags:['Urgent'],       mod:'Jun 05, 2026', size:'—' },
+  { name:'Meeting Notes',    icon:'📁', dir:true,  tags:[],               mod:'Jun 04, 2026', size:'—' },
+  { name:'invoice_2026.pdf', icon:'📄', dir:false, tags:['Work'],         mod:'Jun 02, 2026', size:'88 KB' },
+  { name:'readme.txt',       icon:'📝', dir:false, tags:[],               mod:'May 29, 2026', size:'1 KB' },
+  { name:'backup.tar.gz',    icon:'🗜',  dir:false, tags:[],               mod:'May 20, 2026', size:'1.4 GB' },
+  { name:'design_v3.fig',    icon:'🎨', dir:false, tags:['Review'],       mod:'May 18, 2026', size:'9.2 MB' },
+];
+
+const TAG_COLORS = { Work:'#A8D257', Review:'#E87722', Personal:'#7B5EA7', Urgent:'#E14A3C' };
+
+let selected = new Set();
+let currentFiles = [...FILES];
+
+function renderFiles(files) {
+  const list = document.getElementById('file-list');
+  list.innerHTML = files.map((f,i) => `
+    <div class="file-row ${selected.has(i)?'selected':''}"
+         onclick="selectRow(event,${i})"
+         ondblclick="dblClick(${i})"
+         oncontextmenu="rowCtx(event,${i})">
+      <div class="file-cell">
+        <span class="file-icon">${f.icon}</span>
+        <span class="file-name">${f.name}</span>
+      </div>
+      <div class="tags-cell">
+        ${f.tags.slice(0,3).map(t=>`<div class="tag-dot" style="background:${TAG_COLORS[t]||'#C9CCC9'}" title="${t}"></div>`).join('')}
+        ${f.tags.length>3?`<span style="font-size:10px;color:var(--faintText)">+${f.tags.length-3}</span>`:''}
+      </div>
+      <div class="cell-dim">${f.mod}</div>
+      <div class="cell-dim">${f.size}</div>
+    </div>
+  `).join('');
+  updateStatus(files.length);
+}
+
+function selectRow(e, i) {
+  if (e.metaKey || e.ctrlKey) {
+    selected.has(i) ? selected.delete(i) : selected.add(i);
+  } else if (e.shiftKey && selected.size > 0) {
+    const last = Math.max(...selected);
+    const min = Math.min(i, last), max = Math.max(i, last);
+    for (let x=min; x<=max; x++) selected.add(x);
+  } else {
+    selected = new Set([i]);
+  }
+  renderFiles(currentFiles);
+  const n = selected.size;
+  document.getElementById('status-sel').textContent = n > 0 ? `${n} selected` : '';
+}
+
+function dblClick(i) {
+  if (currentFiles[i].dir) navigate(currentFiles[i].name);
+}
+
+function updateStatus(count) {
+  document.getElementById('status-left').innerHTML = `<b>${count} items</b>`;
+}
+
+function filterFiles() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  currentFiles = q ? FILES.filter(f => f.name.toLowerCase().includes(q)) : [...FILES];
+  selected.clear();
+  renderFiles(currentFiles);
+}
+
+function navigate(name) {
+  document.getElementById('win-title').textContent = name;
+  document.querySelectorAll('.sidebar-row').forEach(r => {
+    r.classList.toggle('active', r.textContent.trim() === name);
+  });
+}
+
+function goUp() { navigate('Home'); }
+
+// context menu
+function showCtx(e) {
+  e.preventDefault();
+  const m = document.getElementById('ctx-menu');
+  m.classList.add('visible');
+  const wr = document.getElementById('win').getBoundingClientRect();
+  let x = e.clientX - wr.left, y = e.clientY - wr.top;
+  if (x + 200 > 1100) x -= 200;
+  if (y + 240 > 700)  y -= 240;
+  m.style.left = x+'px';
+  m.style.top  = y+'px';
+}
+function rowCtx(e, i) {
+  if (!selected.has(i)) { selected = new Set([i]); renderFiles(currentFiles); }
+  showCtx(e);
+}
+function hideCtx() { document.getElementById('ctx-menu').classList.remove('visible'); }
+document.addEventListener('click', hideCtx);
+
+// sheets
+function showSheet(id) { document.getElementById(id).classList.add('visible'); }
+function hideSheet(id) { document.getElementById(id).classList.remove('visible'); }
+
+// rename mode tabs
+function setMode(tab, mode) {
+  document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  updatePreview();
+}
+
+function updatePreview() {
+  const val = document.getElementById('rename-input').value;
+  document.getElementById('rename-preview').innerHTML = `
+    <div class="preview-row"><span class="preview-old">Budget 2025.xlsx</span><span class="preview-arr"> → </span><span class="preview-new">${val||'…'}.xlsx</span></div>
+    <div class="preview-row"><span class="preview-old">Q1 Report.pdf</span><span class="preview-arr"> → </span><span class="preview-new">${val||'…'}.pdf</span></div>
+  `;
+}
+
+// settings tabs
+function setSettingsTab(tab, idx) {
+  document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  [0,1,2].forEach(i => {
+    const p = document.getElementById('settings-panel-'+i);
+    if(p) p.style.display = i===idx?'block':'none';
+  });
+}
+
+// init
+renderFiles(FILES);
+</script>
+</body>
+</html>
